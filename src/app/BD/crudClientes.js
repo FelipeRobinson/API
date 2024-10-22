@@ -57,7 +57,6 @@ class CLIENTES {
 
   excluiDadosDoClienteNaTabelaClientes(idClie) {
     return new Promise((resolve, reject) => {
-      const {} = dados;
       var sql = "DELETE FROM CLIENTES WHERE idClie = " + idClie;
 
       this._bd.query(sql, function(erro) {
