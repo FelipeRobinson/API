@@ -12,8 +12,11 @@ module.exports = (aplicacao) => {
       response.status(200).send("Iniciando API em NODEJS");
    });
 
-   // GET = para rodar SELECT na tabela CLIENTES
+   // GET = para rodar SELECT FULL na tabela CLIENTES
    aplicacao.get("/Clientes",obj_clieController.pegaTodosOsDadosDaTabelaCLIENTES());
+
+   // GET = para rodar SELECT com ID (específico) na tabela CLIENTES
+   aplicacao.get("/Clientes:idClie",obj_clieController.pegaDadosExpecificoDaTabelaCLIENTES());
 
    // POST = para rodar INSERT na tabela CLIENTES
    aplicacao.post("/Clientes",clienteMiddleware.validaDadosDoBody,obj_clieController.fazInclusaoDeNovoCliente());
@@ -23,4 +26,6 @@ module.exports = (aplicacao) => {
 
    // DELETE = para rodar o DELETE na tabela CLIENTES
    aplicacao.delete("/Clientes/:idClie",obj_clieController.fazExclusaoDeDadosDoCliente());
+
+
 }

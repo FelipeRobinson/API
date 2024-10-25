@@ -8,14 +8,28 @@ class controllerCLIENTES {
     return function(request,response) {
       const clieCRUD = new CLIENTES(bd);
       clieCRUD.todosDadosTabelaClientes()
-        .then((resultados) => {
-          console.log(resultados);
-          response.status(200).json(resultados);
-        })
-        .catch(erro => console.log(erro));
+      .then((resultados) => {
+        console.log(resultados);
+        response.status(200).json(resultados);
+      })
+      .catch(erro => console.log(erro));
     };
   };
 
+  // método do SELECT por ID
+  pegaDadosExpecificoDaTabelaCLIENTES() {
+    return function(request,response) {
+      var { idClie } = request.params;
+      const clieCRUD = new CLIENTES(bd);
+      clieCRUD.idDadosTabelaClientes(idClie)
+      .then((resultados) => {
+        console.log("Exibindo dados específicos de um CLIENTE");
+        console.log(resultados);
+        response.status(200).json(resultados);
+      })
+      .catch(erro => console.log(erro));
+    }
+  }
 
   // método do INSERT
   fazInclusaoDeNovoCliente() {
@@ -31,11 +45,11 @@ class controllerCLIENTES {
       console.log("POSTMAN  = " + dados.cpfClie + " - " + dados.nomeClie + " - " + dados.dataNiverClie + " -" + dados.emailClie);
       const clieCRUD = new CLIENTES(bd);
       clieCRUD.insereNovoClienteNaTabelaClientes(dados)
-        .then(() => {
-           console.log("Incluindo um novo cliente na tabela CLIENTES");
-           response.status(200).json({ mensagem: 'Método fazInclusaoNovoCliente() OK!'});
-        })
-        .catch(erro => console.log(erro));
+      .then(() => {
+          console.log("Incluindo um novo cliente na tabela CLIENTES");
+          response.status(200).json({ mensagem: 'Método fazInclusaoNovoCliente() OK!'});
+      })
+      .catch(erro => console.log(erro));
     };
   };
 
@@ -52,11 +66,11 @@ class controllerCLIENTES {
       console.log("POSTMAN  = " + dados.cpfClie + " - " + dados.nomeClie + " - " + dados.dataNiverClie + " -" + dados.emailClie);
 
       clieCRUD.atualizaDadosDoClienteNaTabelaClientes(idClie,dados)
-        .then(() => {
-          console.log("Atualizando um cliente na tabela CLIENTES");
-          response.status(200).json({ mensagem: 'Método atualizaDadosDoClienteNaTabelaClientes() OK!' })
-        })
-        .catch(erro => console.log(erro));
+      .then(() => {
+        console.log("Atualizando um cliente na tabela CLIENTES");
+        response.status(200).json({ mensagem: 'Método atualizaDadosDoClienteNaTabelaClientes() OK!' })
+      })
+      .catch(erro => console.log(erro));
     };
   };
 
